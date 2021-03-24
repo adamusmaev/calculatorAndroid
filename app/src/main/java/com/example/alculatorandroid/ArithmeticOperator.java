@@ -6,6 +6,5 @@ public enum ArithmeticOperator {
     DIVISION,
     MULTIPLICATION,
     NULL,
-    EQUALLY,
-    LASTEQUALLY
+    EQUALLY
 }

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) view;
         String stringTextView = textView.getText().toString();
         Button button1 = (Button)findViewById(R.id.buttonMultiplication);
+        Double tmpTextViewValue;
         String tmpString = stringTextView.replace(",",".");
 
         switch(view.getId())
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button7:
             case R.id.button8:
             case R.id.button9:
-                if (stringTextView.equals("0") || arithmeticOperator == EQUALLY)
+                if (stringTextView.equals("0"))
                 {
                     textView.setText(button.getText().toString());
                 }
@@ -56,11 +57,27 @@ public class MainActivity extends AppCompatActivity {
                 button1.setText(res.toString());
                 arithmeticOperator = NULL;
                 break;
+            case R.id.buttonSqrt:
+                tmpTextViewValue = Double.parseDouble(tmpString);
+                tmpTextViewValue = Math.sqrt(tmpTextViewValue);
+                textView.setText(tmpTextViewValue.toString());
+                break;
+            case R.id.buttonFractionalPart:
+                tmpTextViewValue = Double.parseDouble(tmpString);
+                tmpTextViewValue = 1 / tmpTextViewValue;
+                textView.setText(tmpTextViewValue.toString());
+                break;
+            case R.id.buttonPlusAndMinus:
+                tmpTextViewValue = Double.parseDouble(tmpString);
+                tmpTextViewValue = tmpTextViewValue * -1;
+                textView.setText(tmpTextViewValue.toString());
+                if (arithmeticOperator == EQUALLY) res = res * -1;
+                break;
             case R.id.buttonPlus:
-                setArithmeticOperator(arithmeticOperator, Double.parseDouble(tmpString));
-                arithmeticOperator = PLUS;
-                button1.setText(res.toString());
-                textView.setText("0");
+                    setArithmeticOperator(arithmeticOperator, Double.parseDouble(tmpString));
+                    arithmeticOperator = PLUS;
+                    button1.setText(res.toString());
+                    textView.setText("0");
                 break;
             case R.id.buttonMinus:
                 setArithmeticOperator(arithmeticOperator, Double.parseDouble(tmpString));
@@ -97,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         if (ap == MULTIPLICATION) res = res * d;
         if (ap == DIVISION) res = res / d;
         if (ap == NULL) res = d;
-        if (ap == EQUALLY) {res = 0D; arithmeticOperator = NULL;}
-
+        if (ap == EQUALLY) {arithmeticOperator = NULL;}
     }
 }
