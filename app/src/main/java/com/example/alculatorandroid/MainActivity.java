@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button7:
             case R.id.button8:
             case R.id.button9:
-                if (stringTextView.equals("0"))
+                if (stringTextView.equals("0") || arithmeticOperator == EQUALLY)
                 {
                     textView.setText(button.getText().toString());
                 }
@@ -74,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 button1.setText(res.toString());
                 textView.setText("0");
                 break;
-            /*case R.id.buttonDivision:
-                res = res / Double.parseDouble(tmpString);
+            case R.id.buttonDivision:
+                setArithmeticOperator(arithmeticOperator, Double.parseDouble(tmpString));
+                arithmeticOperator = DIVISION;
+                button1.setText(res.toString());
                 textView.setText("0");
-                break;*/
+                break;
             case R.id.buttonEqually:
                 setArithmeticOperator(arithmeticOperator, Double.parseDouble(tmpString));
                 arithmeticOperator = EQUALLY;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (ap == PLUS) res = res + d;
         if (ap == MINUS) res = res - d;
         if (ap == MULTIPLICATION) res = res * d;
+        if (ap == DIVISION) res = res / d;
         if (ap == NULL) res = d;
         if (ap == EQUALLY) {res = 0D; arithmeticOperator = NULL;}
 
